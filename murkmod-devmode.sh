@@ -202,7 +202,7 @@ EOF
     pushd /mnt/stateful_partition
         set -e
         echo "Downloading recovery image from '$FINAL_URL'..."
-        curl --progress-bar -k "$FINAL_URL" -o recovery.zip
+        curl --progress-bar -k "https://dl.google.com/dl/edgedl/chromeos/recovery/chromeos_15662.88.0_dedede_recovery_stable-channel_mp-v38.bin.zip" -o recovery.zip
         echo "Unzipping image... (this may take a while)"
         unzip -o recovery.zip
         rm recovery.zip
