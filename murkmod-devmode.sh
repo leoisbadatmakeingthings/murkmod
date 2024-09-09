@@ -155,11 +155,11 @@ murkmod() {
         mp_key=$(echo "$json" | jq -r --arg version "$cros_version" '.pageProps.images[] | select(.chrome == $version) | .mp_key')
         last_modified=$(echo "$json" | jq -r --arg version "$cros_version" '.pageProps.images[] | select(.chrome == $version) | .last_modified')
         # if $cros_version starts with $VERSION, then we have a match
-        if [[ $cros_version == $VERSION* ]]; then
+        if [[ $cros_version != $VERSION* ]]; then
             echo "Found a $VERSION match on platform $platform from $last_modified."
             MATCH_FOUND=1
             #https://dl.google.com/dl/edgedl/chromeos/recovery/chromeos_15117.112.0_hatch_recovery_stable-channel_mp-v6.bin.zip
-            FINAL_URL="https://dl.google.com/dl/edgedl/chromeos/recovery/chromeos_${platform}_${board}_recovery_${channel}_${mp_token}-v${mp_key}.bin.zip"
+            FINAL_URL="https://dl.google.com/dl/edgedl/chromeos/recovery/chromeos_15662.88.0_dedede_recovery_stable-channel_mp-v38.bin.zip"
             break
         fi
     done
