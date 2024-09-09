@@ -147,13 +147,14 @@ murkmod() {
     chrome_versions=$(echo "$json" | jq -r '.pageProps.images[].chrome')
     echo "Found $(echo "$chrome_versions" | wc -l) versions of chromeOS for your board on chrome100."
     echo "Searching for a match..."
-    MATCH_FOUND=0
+    MATCH_FOUND=1
     for cros_version in $chrome_versions; do
         platform=$(echo "$json" | jq -r --arg version "$cros_version" '.pageProps.images[] | select(.chrome == $version) | .platform')
         channel=$(echo "$json" | jq -r --arg version "$cros_version" '.pageProps.images[] | select(.chrome == $version) | .channel')
         mp_token=$(echo "$json" | jq -r --arg version "$cros_version" '.pageProps.images[] | select(.chrome == $version) | .mp_token')
         mp_key=$(echo "$json" | jq -r --arg version "$cros_version" '.pageProps.images[] | select(.chrome == $version) | .mp_key')
         last_modified=$(echo "$json" | jq -r --arg version "$cros_version" '.pageProps.images[] | select(.chrome == $version) | .last_modified')
+          FINAL_URL="https://dl.google.com/dl/edgedl/chromeos/recovery/chromeos_15662.88.0_dedede_recovery_stable-channel_mp-v38.bin.zip"
         # if $cros_version starts with $VERSION, then we have a match
         if [[ 1 == 1 ]]; then
             echo "Found a $VERSION match on platform $platform from $last_modified."
